@@ -1,0 +1,76 @@
+[user]
+    name = Russell Davies
+    email = russell@zeroflux.net
+
+[alias]
+    # From: http://www.metacircus.com/hacking/2011/02/18/play-git-like-a-violin.html
+    ai = add --interactive
+
+    c = commit
+    cm = commit -m
+    cma = commit -a -m
+    ca = commit --amend
+    caa = commit -a --amend -C HEAD
+
+    r = reset
+    r1 = reset HEAD^
+    r2 = reset HEAD^^
+    rh = reset --hard
+    rh1 = reset HEAD^ --hard
+    rh1 = reset HEAD^^ --hard
+
+    s = status -sb
+    d = diff
+    a = add
+    co = checkout
+    b = branch
+    f = fetch
+    r = reset
+    p = push
+    unstage = reset HEAD
+    
+    # viewing the commit log
+    l = log --oneline
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    # From: http://pyrtsa.posterous.com/aligning-your-git-logs
+    l50  = "!f () { git log --abbrev-commit --date=short --pretty=format:'%h%x00%cd%x00%s%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"\\033[31m%s\\033[0m \\033[32m%s\\033[0m  %-50s \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5 }' | less -R; }; f"
+    l80  = "!f () { git log --abbrev-commit --date=short --pretty=format:'%h%x00%cd%x00%s%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"\\033[31m%s\\033[0m \\033[32m%s\\033[0m  %-80s \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5 }' | less -R; }; f"
+    lg50 = "!f () { git log --graph --color=always --abbrev-commit --date=relative --pretty=format:'%x00%h%x00%s%x00%cd%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"%s\\033[31m%s\\033[0m %-50s \\033[32m%14s\\033[0m \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5, $6 }' | less -R; }; f"
+    lg80 = "!f () { git log --graph --color=always --abbrev-commit --date=relative --pretty=format:'%x00%h%x00%s%x00%cd%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"%s\\033[31m%s\\033[0m %-80s \\033[32m%14s\\033[0m \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5, $6 }' | less -R; }; f"
+    lol = log --graph --decorate --oneline
+    lola = log --graph --decorate --oneline --all
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+[core]
+    quotepath = false
+    autocrlf = input
+    # Use custom `.gitignore` and `.gitattributes`
+    excludesfile = ~/.gitignore_global
+    attributesfile = ~/.gitattributes_global
+    # Treat spaces before tabs and all kinds of trailing whitespace as an error
+    whitespace = space-before-tab,trailing-space
+
+[color]
+    ui = true
+
+[apply]
+    # Detect whitespace errors when applying a patch
+    whitespace = warn
+
+[merge]
+    # Include summaries of merged commits in newly created merge commit messages
+    log = true
+
+# URL shorthands
+[url "git@github.com:"]
+    insteadOf = "gh:"
+    pushInsteadOf = "github:"
+    pushInsteadOf = "git://github.com/"
+[url "git://github.com/"]
+    insteadOf = "github:"
+[url "git@gist.github.com:"]
+    insteadOf = "gst:"
+    pushInsteadOf = "gist:"
+    pushInsteadOf = "git://gist.github.com/"
+[url "git://gist.github.com/"]
+    insteadOf = "gist:"

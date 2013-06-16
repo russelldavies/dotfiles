@@ -1,0 +1,124 @@
+" Vundle and bundles configuration
+source ~/.vim/bundles.vim
+
+" Automatic reloading of .vimrc
+autocmd! bufwritepost .vimrc source %
+
+" UTF-8 by default
+set encoding=utf8
+
+set nocompatible
+set autoindent
+set bs=indent,eol,start
+syntax on
+
+set hlsearch incsearch ignorecase smartcase
+
+"let mapleader = "\<space>"
+
+" Turn off highlighting
+nnoremap <leader>q :nohlsearch<cr>
+
+set shiftwidth=4
+set tabstop=4
+set expandtab
+set softtabstop=4
+
+set ruler
+
+set history=100
+
+
+" When editing a file, always jump to the last cursor position
+autocmd BufReadPost *
+\ if ! exists("g:leave_my_cursor_position_alone") |
+\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+\ exe "normal g'\"" |
+\ endif |
+\ endif
+
+if version >= 703
+    set relativenumber
+    set undofile
+else
+    set number
+endif
+
+" make wrapped lines break at spaces
+set linebreak
+" character to show when a line has been wrapped
+set cpoptions+=n
+set showbreak=\ \ ↳\ 
+
+" show partial lines wrapped past bottom of screen (stop @ display)
+set display=lastline
+
+" Highlight line cursor is on
+"set cursorline
+
+"" Code folding
+"set foldmethod=indent
+"set foldlevel=99
+"" Why not use the space or return keys to toggle folds?
+"nnoremap <space> za
+"nnoremap <cr> za
+"vnoremap <space> zf
+
+colorscheme solarized
+if $TERM_PROFILE == "solarized-dark"
+    set background=dark
+else
+    set background=light
+endif
+
+" System clipboard integration
+set clipboard=unnamed
+
+" Save buffer when focus lost
+au FocusLost * :wa
+
+" Buffer helpers
+nmap <c-e> :e#<cr>
+nnoremap <leader>l :ls<cr>:b<space>
+
+" ctrlp.vim (replaces FuzzyFinder and Command-T)
+let g:ctrlp_map = '<Leader>t'
+let g:ctrlp_cmd = 'CtrlP'
+nmap <leader>r :CtrlPBuffer<cr>
+"let g:ctrlp_match_window_reversed = 0
+"let g:ctrlp_switch_buffer = 0
+"let g:ctrlp_working_path_mode = 0
+let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py'
+
+:nmap <leader>e :NERDTreeToggle<cr>
+let NERDTreeIgnore = ['\.pyc$']
+
+" vim-powerline
+set laststatus=2            " Always show the status bar
+"let g:Powerline_symbols = 'unicode'
+"let g:Powerline_theme = 'solarized256'
+let g:Powerline_colorscheme = 'solarized256'
+
+nmap <leader>s :setlocal invspell<cr>
+
+" Alt-p pipes the current buffer to the current filetype as a command
+" (good for perl, python, ruby, shell, gnuplot...)
+nmap <M-p>  :call RunUsingCurrentFiletype()<cr>
+nmap <Esc>p :call RunUsingCurrentFiletype()<cr>
+function! RunUsingCurrentFiletype()
+    execute 'write'
+    execute '! clear; '.&filetype.' <% '
+endfunction
+
+" bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+" Switch between normal line numbering and relative depending on focus
+autocmd FocusLost * :set number
+autocmd FocusGained * :set relativenumber
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
+autocmd CursorMoved * :set relativenumber

@@ -1,0 +1,3 @@
+startup_message off
+caption always '%{= dg}%{B}%H %{G}|%=%?%{d}%-w%?%{r}(%{d}%n %t%? {%u} %?%{r})%{d}%?%+w%?%=%{G}| %{B}%c'
+defscrollback 2000
