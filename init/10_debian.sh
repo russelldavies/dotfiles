@@ -12,6 +12,7 @@ packages=(
     python python-setuptools python-dev libsqlite3-dev libreadline-dev libncurses-dev
     vim git tmux
     tree nmap htop wget curl dnsutils
+    keychain
 )
 
 list=()

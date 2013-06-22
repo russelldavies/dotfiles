@@ -12,8 +12,9 @@ for file in ~/.{path,exports,aliases,functions}; do
 done
 unset file
 
-# Some terminal emulators support 256 colors but set incorrect TERM
-[[ $TERM == "linux" ]] && TERM=xterm-256color
+# All terminal emulators I use support 256 colors but don't advertise so
+# manually set term capabilities; bad but so are crappy terms
+TERM=xterm-256color
 
 # Simple prompt
 PS1='\w$ '
@@ -65,4 +66,8 @@ fi
 # enable prompt color support
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
+if [ -x /usr/bin/keychain ]; then
+    eval $(keychain --eval --agents ssh id_rsa)
 fi

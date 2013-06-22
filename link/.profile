@@ -27,3 +27,7 @@ if [ -d "$HOME/bin" ] ; then
         PATH="$HOME/bin/$os:$PATH"
     fi
 fi
+
+if [ -d "$HOME/usr/bin" ] ; then
+    PATH="$HOME/usr/bin:$PATH"
+fi

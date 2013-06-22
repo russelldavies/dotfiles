@@ -203,7 +203,7 @@ source $HOME/.profile
 
 # Lest I forget to do a few additional things...
 if [[ "$new_dotfiles_install" ]]; then
-    source "conf/firsttime"
+    source "conf/firsttime.sh"
 fi
 
 # All done!
