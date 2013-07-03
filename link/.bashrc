@@ -69,5 +69,5 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 if [ -x /usr/bin/keychain ]; then
-    eval $(keychain --eval --agents ssh id_rsa)
+    eval $(keychain -q --eval --agents ssh id_rsa)
 fi
