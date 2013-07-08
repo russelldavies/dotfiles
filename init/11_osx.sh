@@ -2,7 +2,7 @@
 [[ "$OSTYPE" =~ ^darwin ]] || return 1
 
 # Prompt user if they want to run this
-read -N 1 -t 15 -p "Run OS X defaults? [y/N] " run; echo
+read -rs -n 1 -t 15 -p "Run OS X defaults? [y/N] " run; echo
 if [[ "$run" != [Yy] ]]; then
     return
 fi
