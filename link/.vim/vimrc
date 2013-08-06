@@ -122,3 +122,6 @@ autocmd FocusGained * :set relativenumber
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
 autocmd CursorMoved * :set relativenumber
+
+"set colorcolumn=79
+set textwidth=79
