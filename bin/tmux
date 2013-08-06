@@ -1,4 +1,4 @@
 #!/bin/sh
 unset cfg
 test "$(uname)" = "Darwin" && cfg=$HOME/.tmux-osx.conf
-exec /usr/bin/tmux ${cfg+-f "$cfg"} "$@"
+exec $(which -a tmux | sed '2q;d') ${cfg+-f "$cfg"} "$@"
