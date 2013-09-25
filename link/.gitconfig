@@ -21,6 +21,7 @@
 
     s = status -sb
     d = diff
+    dc = diff --cached
     a = add
     co = checkout
     b = branch
@@ -28,7 +29,7 @@
     r = reset
     p = push
     unstage = reset HEAD
-    
+
     # viewing the commit log
     l = log --oneline
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
@@ -77,4 +78,4 @@
 [push]
 	default = simple
 [help]
-	autocorrect = 1
+    autocorrect = 30
