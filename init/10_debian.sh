@@ -10,8 +10,8 @@ sudo apt-get -qq upgrade
 packages=(
     build-essential libssl-dev
     python python-setuptools python-dev libsqlite3-dev libreadline-dev libncurses-dev
-    vim git tmux
-    tree nmap htop wget curl dnsutils
+    vim git git-extras tmux
+    tree nmap htop wget curl dnsutils bash-completion
     keychain
 )
 
@@ -27,12 +27,3 @@ if (( ${#list[@]} > 0 )); then
         sudo apt-get -qq install "$package"
     done
 fi
-
-## Install Git Extras
-#if [[ ! "$(type -P git-extras)" ]]; then
-#  e_header "Installing Git Extras"
-#  (
-#    cd ~/.dotfiles/libs/git-extras &&
-    #    sudo make install
-#  )
-#fi

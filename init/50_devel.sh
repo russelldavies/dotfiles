@@ -2,7 +2,7 @@
 [[ $(type -P pip) ]] || sudo easy_install pip
 
 packages=(
-	virtualenv virtualenvwrapper
+	distribute virtualenv virtualenvwrapper
 )
 list=()
 for package in "${packages[@]}"; do
