@@ -3,7 +3,10 @@
 # for examples
 
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
