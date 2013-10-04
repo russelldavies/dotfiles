@@ -9,7 +9,7 @@ sudo apt-get -qq upgrade
 # Install APT packages.
 packages=(
     build-essential libssl-dev
-    python python-setuptools python-dev libsqlite3-dev libreadline-dev libncurses-dev
+    python python-pip python-virtualenv virtualenvwrapper python-setuptools python-dev libsqlite3-dev libreadline-dev libncurses-dev
     vim git git-extras tmux
     tree nmap htop wget curl dnsutils bash-completion
     keychain

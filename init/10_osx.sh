@@ -59,3 +59,19 @@ if [[ "$(type -P brew)" ]]; then
     # Remove outdated versions from the cellar
     brew cleanup
 fi
+
+# Python dev
+[[ $(type -P pip) ]] || sudo easy_install pip
+
+packages=(
+	virtualenv virtualenvwrapper
+)
+list=()
+for package in "${packages[@]}"; do
+    # If package is not installed add to list
+    [[ $(pip show "$package") ]] || list=("${list[@]}" "$package")
+done
+if (( ${#list[@]} > 0 )); then
+    e_header "Installing pip packages: ${list[*]}"
+    sudo pip -q install -U ${list[*]}
+fi
