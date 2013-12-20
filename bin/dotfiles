@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Tweak file globbing.
+shopt -s extglob dotglob nullglob
+
 repo='https://github.com/russelldavies/dotfiles.git'
 homebrew='https://raw.github.com/mxcl/homebrew/go'
 dotfiles="$HOME/.dotfiles"
@@ -88,7 +91,8 @@ function link_do() {
 # Copy, link, init, etc.
 function do_stuff() {
   local base dest skip
-  local files=("$dotfiles/$1"/*)
+  # glob all files except vim undo files
+  local files=("$dotfiles/$1"/!(*.un~))
   # No files? abort.
   if (( ${#files[@]} == 0 )); then return; fi
   # Run _header function only if declared.
@@ -176,10 +180,6 @@ else
   git pull
   git submodule update --init --recursive --quiet
 fi
-
-# Tweak file globbing.
-shopt -s dotglob
-shopt -s nullglob
 
 # Create caches directory, if it doesn't already exist.
 mkdir -p "$dotfiles/caches"
