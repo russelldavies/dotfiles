@@ -37,12 +37,10 @@ autocmd BufReadPost *
 \ endif |
 \ endif
 
-if version >= 703
-    set relativenumber
-    set undofile
-else
-    set number
-endif
+set undofile
+
+" Both set for hybrid line number mode
+set number relativenumber
 
 " make wrapped lines break at spaces
 set linebreak
@@ -115,13 +113,6 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
-
-" Switch between normal line numbering and relative depending on focus
-autocmd FocusLost * :set number
-autocmd FocusGained * :set relativenumber
-autocmd InsertEnter * :set number
-autocmd InsertLeave * :set relativenumber
-autocmd CursorMoved * :set relativenumber
 
 "set colorcolumn=79
 set textwidth=79
