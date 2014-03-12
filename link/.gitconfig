@@ -79,3 +79,5 @@
 	default = simple
 [help]
     autocorrect = 30
+[fetch]
+	prune = true
