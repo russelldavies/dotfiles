@@ -29,6 +29,7 @@ Bundle 'docunext/closetag.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-markdown'
+Bundle 'editorconfig/editorconfig-vim'
 " =======
 
 filetype plugin indent on     " required!
