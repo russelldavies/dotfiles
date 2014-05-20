@@ -113,3 +113,6 @@ map <c-h> <c-w>h
 
 "set colorcolumn=79
 set textwidth=79
+
+" Templates for new files
+autocmd BufNewFile *.py 0r ~/.vim/templates/python.template
