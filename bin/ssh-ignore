@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # This script is useful for when connecting to ephemeral hosts
 # (for example, virtual machines) whose characteristic change quite often.
@@ -10,8 +10,4 @@
 
 # The parameter StrictHostKeyChecking specifies if SSH will automatically add new host keys to the host key database file. By setting it to no, the host key is automatically added, without user confirmation, for all first-time connection. Because of the null key database file, all connection is viewed as the first-time for any SSH server host. Therefore, the host key is automatically added to the host key database with no user confirmation. Writing the key to the /dev/null file discards the key and reports success.
 
-if [ "$*" ]; then
-	ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "$@"
-else
-	echo "Usage: $0 <user@host> [other options]"
-fi
+ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "$@"
