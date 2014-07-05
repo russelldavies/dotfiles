@@ -30,6 +30,8 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-markdown'
 Bundle 'editorconfig/editorconfig-vim'
+Bundle 'epeli/slimux'
+"Bundle 'christoomey/vim-tmux-navigator'
 " =======
 
 filetype plugin indent on     " required!
