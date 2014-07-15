@@ -24,6 +24,9 @@ export LESS_TERMCAP_md="$ORANGE"
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"
 
+# pip should only run if there is a virtualenv currently activated
+export PIP_REQUIRE_VIRTUALENV=true
+
 # python virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/code

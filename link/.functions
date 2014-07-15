@@ -105,3 +105,8 @@ function tunnel() {
 function tunnelx() {
     [[ -f /tmp/sshuttle.pid ]] && kill $(cat /tmp/sshuttle.pid) && echo "Disconnected."
 }
+
+# pip for system
+syspip() {
+    PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
