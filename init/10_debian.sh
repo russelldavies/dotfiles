@@ -15,15 +15,5 @@ packages=(
     keychain
 )
 
-list=()
-for package in "${packages[@]}"; do
-    # If package is not installed add to list
-    [[ $(dpkg -l "$package" 2>/dev/null) ]] || list=("${list[@]}" "$package")
-done
-
-if (( ${#list[@]} > 0 )); then
-    e_header "Installing APT packages: ${list[*]}"
-    for package in "${list[@]}"; do
-        sudo apt-get -qq install "$package"
-    done
-fi
+e_header "Installing APT packages: ${packages[*]}"
+sudo apt-get install ${packages[*]}
