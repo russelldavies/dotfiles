@@ -1,2 +1,1 @@
 id_rsa* filter=git-crypt diff=git-crypt
-bin/backup-data filter=git-crypt diff=git-crypt
