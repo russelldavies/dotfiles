@@ -29,7 +29,7 @@ if [[ "$(type -P brew)" ]]; then
     # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
     brew install findutils
     # Install Bash 4
-    brew install bash
+    brew install bash bash-completion
 
     # Install wget with IRI support
     brew install wget --enable-iri
