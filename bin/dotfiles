@@ -178,7 +178,7 @@ else
   e_header "Updating dotfiles"
   cd "$dotfiles"
   git pull
-  git submodule update --init --recursive --quiet
+  git submodule update --init --recursive --remote
 fi
 
 # Create caches directory, if it doesn't already exist.

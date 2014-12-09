@@ -1,12 +1,16 @@
 [submodule "lib/dircolors-solarized"]
 	path = lib/dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git
+	branch = master
 [submodule "lib/tmux-tools"]
 	path = lib/tmux-tools
 	url = https://gist.github.com/4016983.git
+	branch = master
 [submodule "lib/git-crypt"]
 	path = lib/git-crypt
 	url = https://github.com/AGWA/git-crypt.git
+	branch = master
 [submodule "link/.vim/bundle/vundle"]
 	path = link/.vim/bundle/vundle
 	url = https://github.com/gmarik/vundle.git
+	branch = master
