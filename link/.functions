@@ -107,6 +107,6 @@ function tunnelx() {
 }
 
 # pip for system
-syspip() {
+gpip() {
     PIP_REQUIRE_VIRTUALENV="" pip "$@"
 }
