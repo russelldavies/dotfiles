@@ -14,8 +14,10 @@ if [[ "$(type -P brew)" ]]; then
     brew upgrade
 
     e_header "Install packages"
-    # GNU core utilities (those that come with OS X are outdated)
+
     brew tap homebrew/dupes
+
+    # GNU core utilities (those that come with OS X are outdated)
     brew install coreutils findutils grep bash bash-completion
 
     # Tools and Utils
@@ -24,6 +26,7 @@ if [[ "$(type -P brew)" ]]; then
     brew install ack tree lesspipe htop-osx
     brew install reattach-to-user-namespace
     brew install python
+    brew install openssh --with-brewed-openssl --with-keychain-support
 
     # TODO: remove if not needed anymore
     #if [[ ! "$(type -P gcc-4.2)" ]]; then
