@@ -87,3 +87,7 @@ case "$OSTYPE" in
 	linux*)
 		alias open="gnome-open"
 esac
+
+# Useful for ephemeral hosts
+alias ssh-ignore='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "$@"'
+alias scp-ignore='scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "$@"'
