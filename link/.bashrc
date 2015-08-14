@@ -71,6 +71,4 @@ if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
-if [ -x /usr/bin/keychain ]; then
-    eval $(keychain -q --eval --agents ssh id_rsa)
-fi
+[ $(which keychain) ] && eval $(keychain -q --eval --agents ssh id_rsa)
