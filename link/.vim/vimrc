@@ -46,7 +46,7 @@ set number relativenumber
 set linebreak
 " character to show when a line has been wrapped
 set cpoptions+=n
-set showbreak=\ \ ↳\ 
+set showbreak=\ \ ↳\
 
 " show partial lines wrapped past bottom of screen (stop @ display)
 set display=lastline
@@ -86,7 +86,7 @@ nmap <leader>r :CtrlPBuffer<cr>
 let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 
 :nmap <leader>e :NERDTreeToggle<cr>
-let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 
 " vim-powerline
 set laststatus=2            " Always show the status bar
