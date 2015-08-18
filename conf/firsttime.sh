@@ -4,8 +4,6 @@ source ~/.profile
 
 # git-crypt
 e_header "git-crypt"
-echo "Compiling..."
-make -sC lib/git-crypt || e_error "git-crypt didn't compile successfully"
 if [[ $(type -p $HOME/bin/git-crypt) ]]; then
     read -e -p "Enter absolute path to git-crypt keyfile: " git_keyfile
     if [[ -f "$git_keyfile" ]]; then

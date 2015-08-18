@@ -21,7 +21,7 @@ if [[ "$(type -P brew)" ]]; then
     brew install coreutils findutils grep bash bash-completion
 
     # Tools and Utils
-    brew install git git-extras
+    brew install git git-extras git-crypt
     brew install tmux
     brew install ack tree lesspipe htop-osx
     brew install reattach-to-user-namespace
