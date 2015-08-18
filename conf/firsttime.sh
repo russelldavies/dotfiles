@@ -18,6 +18,12 @@ else
     e_error "git-crypt wasn't found, manually init is necessary"
 fi
 
+# tmux-mem-cpu-load
+cd lib/tmux-mem-cpu-load
+cmake .
+make
+cd -
+
 # setup remote of this repo to use pubkey auth
 (cd ~/.dotfiles/ && git remote set-url origin git@github.com:russelldavies/dotfiles.git)
 

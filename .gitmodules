@@ -2,10 +2,6 @@
 	path = lib/dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git
 	branch = master
-[submodule "lib/tmux-tools"]
-	path = lib/tmux-tools
-	url = https://gist.github.com/4016983.git
-	branch = master
 [submodule "lib/git-crypt"]
 	path = lib/git-crypt
 	url = https://github.com/AGWA/git-crypt.git
@@ -13,4 +9,8 @@
 [submodule "link/.vim/bundle/vundle"]
 	path = link/.vim/bundle/vundle
 	url = https://github.com/gmarik/vundle.git
+	branch = master
+[submodule "lib/tmux-mem-cpu-load"]
+	path = lib/tmux-mem-cpu-load
+	url = https://github.com/thewtex/tmux-mem-cpu-load.git
 	branch = master
