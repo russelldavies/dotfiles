@@ -6,11 +6,11 @@
 	path = lib/git-crypt
 	url = https://github.com/AGWA/git-crypt.git
 	branch = master
-[submodule "link/.vim/bundle/vundle"]
-	path = link/.vim/bundle/vundle
-	url = https://github.com/gmarik/vundle.git
-	branch = master
 [submodule "lib/tmux-mem-cpu-load"]
 	path = lib/tmux-mem-cpu-load
 	url = https://github.com/thewtex/tmux-mem-cpu-load.git
+	branch = master
+[submodule "link/.vim/bundle/Vundle.vim"]
+	path = link/.vim/bundle/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim
 	branch = master

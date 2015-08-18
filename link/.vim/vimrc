@@ -88,11 +88,9 @@ let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc)$|(^|[/\\])\.(hg|git|bzr)($|[/\\
 :nmap <leader>e :NERDTreeToggle<cr>
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 
-" vim-powerline
-set laststatus=2            " Always show the status bar
-"let g:Powerline_symbols = 'unicode'
-"let g:Powerline_theme = 'solarized256'
-let g:Powerline_colorscheme = 'solarized256'
+" vim-airline
+set laststatus=2 "Always show the status bar
+let g:airline_theme='solarized'
 
 nmap <leader>s :setlocal invspell<cr>
 

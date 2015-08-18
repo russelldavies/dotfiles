@@ -1,31 +1,44 @@
-set nocompatible               " be iMproved
-filetype off                   " required!
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
-" Bundles
+" Plugins
 " =======
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'vim-scripts/Railscasts-Theme-GUIand256color'
-
-Bundle 'vim-scripts/bufkill.vim'
-Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'powerline/powerline'
-Bundle 'easymotion/vim-easymotion'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'vim-scripts/keepcase.vim'
-Bundle 'editorconfig/editorconfig-vim'
-Bundle 'epeli/slimux'
-"Bundle 'christoomey/vim-tmux-navigator'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'bling/vim-airline'
+Plugin 'vim-scripts/bufkill.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-scripts/keepcase.vim'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'epeli/slimux'
+"Plugin 'christoomey/vim-tmux-navigator'
 " =======
 
-filetype plugin indent on     " required!
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
