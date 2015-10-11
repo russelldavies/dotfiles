@@ -8,6 +8,7 @@ if [[ "$(type -P brew)" ]]; then
     e_header "Install packages"
 
     brew tap homebrew/dupes
+    brew install caskroom/cask/brew-cask
 
     # GNU core utilities (those that come with OS X are outdated)
     brew install coreutils findutils grep bash bash-completion
