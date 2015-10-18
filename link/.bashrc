@@ -58,9 +58,12 @@ if [ $(type -t __git_ps1) ]; then
     PS1='\w\[\033[0;34m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
 fi
 
-# enable prompt color support
+# Enable prompt color support
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
 [ $(which keychain) ] && eval $(keychain -q --eval --agents ssh id_rsa)
+
+[ $(type -P pyenv) ] && eval "$(pyenv init -)"
+[ $(type -P pyenv-virtualenv-init) ] && eval "$(pyenv virtualenv-init -)"

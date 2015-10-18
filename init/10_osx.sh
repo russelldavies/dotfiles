@@ -15,11 +15,14 @@ if [[ "$(type -P brew)" ]]; then
 
     # Tools and Utils
     brew install git git-extras git-crypt
-    brew install tmux
+    brew install tmux vim
     brew install ack tree lesspipe htop-osx
     brew install reattach-to-user-namespace
-    brew install python python3
-    brew install openssh
+    brew install pyenv pyenv-virtualenv
+    # OS X version is usually out of date
+    brew install openssh keychain
+
+    brew cask install karabiner seil slate flux
 
     # Remove outdated versions from the cellar
     brew cleanup
