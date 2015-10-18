@@ -1,16 +1,19 @@
+# solarized color theme for OS X ls
+export CLICOLOR=1
+export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
+
 # Make vim the default editor
 export EDITOR="vim"
 
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=32768
 export HISTFILESIZE=$HISTSIZE
-# don't put duplicate lines in the history. See bash(1) for more options
-# ... or force ignoredups and ignorespace
+# Omit duplicates and commands that begin with a space from history.
 export HISTCONTROL=ignoredups:ignorespace
 # Make some commands not show up in history
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
-# show timestamp in bash_history
-export HISTTIMEFORMAT="[%Y.%m.%d - %H:%M:%S] "
+# Show timestamp in bash_history
+export HISTTIMEFORMAT="[%Y-%m-%d %H:%M:%S] "
 # Append history so new sessions can access them
 export PROMPT_COMMAND="history -a"
 
@@ -18,18 +21,11 @@ export PROMPT_COMMAND="history -a"
 export LANG="en_US"
 export LC_ALL="en_US.UTF-8"
 
-# Highlight section titles in manual pages
-export LESS_TERMCAP_md="$ORANGE"
-
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"
 
+# Colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
 # pip should only run if there is a virtualenv currently activated
 export PIP_REQUIRE_VIRTUALENV=true
-# cache pip-installed packages to avoid re-downloading
-export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
-
-# python virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/code
-[[ -f /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh

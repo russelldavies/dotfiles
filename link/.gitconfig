@@ -79,6 +79,6 @@
 [push]
 	default = simple
 [help]
-    autocorrect = 30
+    autocorrect = 10
 [fetch]
 	prune = true
