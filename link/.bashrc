@@ -63,7 +63,13 @@ if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
-[ $(which keychain) ] && eval $(keychain -q --eval --agents ssh id_rsa)
+# SSH key helper
+[ $(which keychain) ] && eval $(keychain -q --eval --agents ssh id_ed25519 id_rsa)
 
+# Python version management
 [ $(type -P pyenv) ] && eval "$(pyenv init -)"
 [ $(type -P pyenv-virtualenv-init) ] && eval "$(pyenv virtualenv-init -)"
+
+# Node.js version management
+export NVM_DIR=~/.nvm
+. $(brew --prefix nvm)/nvm.sh

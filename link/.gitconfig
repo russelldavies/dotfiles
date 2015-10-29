@@ -77,7 +77,7 @@
 [url "git://gist.github.com/"]
     insteadOf = "gist:"
 [push]
-	default = simple
+	default = current
 [help]
     autocorrect = 10
 [fetch]
