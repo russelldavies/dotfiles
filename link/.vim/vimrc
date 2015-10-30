@@ -54,13 +54,12 @@ set display=lastline
 " Highlight line cursor is on
 "set cursorline
 
-"" Code folding
-"set foldmethod=indent
-"set foldlevel=99
-"" Why not use the space or return keys to toggle folds?
-"nnoremap <space> za
-"nnoremap <cr> za
-"vnoremap <space> zf
+" Code folding
+set foldmethod=indent
+set foldlevel=99
+" Enable folding with the spacebar
+nnoremap <space> za
+vnoremap <space> zf
 
 set background=dark
 call togglebg#map("<leader>b")

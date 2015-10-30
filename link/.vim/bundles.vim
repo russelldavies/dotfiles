@@ -25,6 +25,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'vim-scripts/keepcase.vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'epeli/slimux'
+Plugin 'tmhedberg/SimpylFold'
 "Plugin 'christoomey/vim-tmux-navigator'
 " =======
 
