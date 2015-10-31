@@ -1,34 +1,62 @@
 " Vundle and bundles configuration
 source ~/.vim/bundles.vim
 
-" Automatic reloading of .vimrc
-autocmd! bufwritepost .vimrc source %
-
-" UTF-8 by default
-set encoding=utf8
-
+" Misc
+" ====
 set nocompatible
-set autoindent
-set bs=indent,eol,start
-syntax on
-
-set hlsearch incsearch ignorecase smartcase
-
+set encoding=utf-8
+set backspace=indent,eol,start
+set ttyfast
 "let mapleader = "\<space>"
+set textwidth=79
+"set colorcolumn=79
+set undofile
+autocmd! bufwritepost .vimrc source %    " Automatic reloading of .vimrc
+set clipboard=unnamed " System clipboard integration
+au FocusLost * :wa " Save buffer when focus lost
+" Templates for new files
+autocmd BufNewFile *.py 0r ~/.vim/templates/python.template
 
-" Turn off highlighting
-nnoremap <leader>q :nohlsearch<cr>
+" Colors
+" ======
+syntax on
+colorscheme solarized
+set background=dark
+call togglebg#map("<leader>b")
 
+" Spaces & Tabs
+" =============
+set expandtab
 set shiftwidth=4
 set tabstop=4
-set expandtab
 set softtabstop=4
+filetype plugin indent on
+set autoindent
+set modelines=1
 
+" UI Config
+" =========
+set number relativenumber   " both set for hybrid line number mode
 set ruler
-
 set history=100
-
-
+set wildmenu    " visual autocomplete for command menu
+set showmatch   " highlight matching [{()}]
+set matchpairs+=<:>     " match < and > as well
+set showcmd     " show command in bottom bar
+set linebreak    " make wrapped lines break at spaces
+" character to show when a line has been wrapped
+set cpoptions+=n
+set showbreak=\ \ ↳\
+set display=lastline " show partial lines wrapped past bottom of screen (stop @ display)
+" bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+nmap <leader>s :setlocal invspell<cr>
+" Buffer helpers
+nmap <c-e> :e#<cr>
+nnoremap <leader>l :ls<cr>:b<space>
 " When editing a file, always jump to the last cursor position
 autocmd BufReadPost *
 \ if ! exists("g:leave_my_cursor_position_alone") |
@@ -37,44 +65,21 @@ autocmd BufReadPost *
 \ endif |
 \ endif
 
-set undofile
+" Search
+" ======
+set hlsearch incsearch ignorecase smartcase
+nnoremap <leader>q :nohlsearch<cr>   " Turn off search highlight
 
-" Both set for hybrid line number mode
-set number relativenumber
-
-" make wrapped lines break at spaces
-set linebreak
-" character to show when a line has been wrapped
-set cpoptions+=n
-set showbreak=\ \ ↳\
-
-" show partial lines wrapped past bottom of screen (stop @ display)
-set display=lastline
-
-" Highlight line cursor is on
-"set cursorline
-
-" Code folding
+" Folding
+" =======
 set foldmethod=indent
 set foldlevel=99
 " Enable folding with the spacebar
 nnoremap <space> za
 vnoremap <space> zf
 
-set background=dark
-call togglebg#map("<leader>b")
-colorscheme solarized
-
-" System clipboard integration
-set clipboard=unnamed
-
-" Save buffer when focus lost
-au FocusLost * :wa
-
-" Buffer helpers
-nmap <c-e> :e#<cr>
-nnoremap <leader>l :ls<cr>:b<space>
-
+" Plugin Config
+" =============
 " ctrlp.vim (replaces FuzzyFinder and Command-T)
 let g:ctrlp_map = '<Leader>t'
 let g:ctrlp_cmd = 'CtrlP'
@@ -84,6 +89,7 @@ nmap <leader>r :CtrlPBuffer<cr>
 "let g:ctrlp_working_path_mode = 0
 let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 
+" nerdtree
 :nmap <leader>e :NERDTreeToggle<cr>
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 
@@ -91,7 +97,8 @@ let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 set laststatus=2 "Always show the status bar
 let g:airline_theme='solarized'
 
-nmap <leader>s :setlocal invspell<cr>
+" toggle gundo
+nnoremap <leader>u :GundoToggle<CR>
 
 " Alt-p pipes the current buffer to the current filetype as a command
 " (good for perl, python, ruby, shell, gnuplot...)
@@ -101,15 +108,3 @@ function! RunUsingCurrentFiletype()
     execute 'write'
     execute '! clear; '.&filetype.' <% '
 endfunction
-
-" bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
-
-"set colorcolumn=79
-set textwidth=79
-
-" Templates for new files
-autocmd BufNewFile *.py 0r ~/.vim/templates/python.template

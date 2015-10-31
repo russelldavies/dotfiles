@@ -26,6 +26,7 @@ Plugin 'vim-scripts/keepcase.vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'epeli/slimux'
 Plugin 'tmhedberg/SimpylFold'
+Plugin 'sjl/gundo.vim'
 "Plugin 'christoomey/vim-tmux-navigator'
 " =======
 
