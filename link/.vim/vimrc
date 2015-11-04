@@ -40,7 +40,6 @@ set number relativenumber   " both set for hybrid line number mode
 set ruler
 set history=100
 set wildmenu    " visual autocomplete for command menu
-set showmatch   " highlight matching [{()}]
 set matchpairs+=<:>     " match < and > as well
 set showcmd     " show command in bottom bar
 set linebreak    " make wrapped lines break at spaces
