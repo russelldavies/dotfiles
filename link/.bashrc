@@ -71,5 +71,7 @@ fi
 [ $(type -P pyenv-virtualenv-init) ] && eval "$(pyenv virtualenv-init -)"
 
 # Node.js version management
-export NVM_DIR=~/.nvm
-. $(brew --prefix nvm)/nvm.sh
+if [ $(type -t nvm) ] ; then
+    export NVM_DIR=~/.nvm
+    . $(brew --prefix nvm)/nvm.sh
+fi
