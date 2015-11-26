@@ -43,6 +43,8 @@
     lola = log --graph --decorate --oneline --all
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
+    wip = commit -m 'WIP'
+
 [core]
     quotepath = false
     autocrlf = input
@@ -82,3 +84,7 @@
     autocorrect = 10
 [fetch]
 	prune = true
+[http "https://git.demo.localflynn.com"]
+	sslCAInfo = /Users/russell/.flynn/ca-certs/default.pem
+[credential "https://git.demo.localflynn.com"]
+	helper = /Users/russell/Downloads/flynn/demo/flynn git-credentials
