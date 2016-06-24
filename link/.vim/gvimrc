@@ -6,9 +6,5 @@ set gcr=a:blinkon0
 " Hide the toolbar
 set guioptions-=T
 
-"set lines=35
 set lines=29
 set columns=84
-
-" Slightly different from console vim
-set showbreak=\ \ \ ↳

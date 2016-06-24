@@ -24,6 +24,7 @@ Plug 'epeli/slimux'
 Plug 'tmhedberg/SimpylFold'
 Plug 'sjl/gundo.vim'
 "Plug 'christoomey/vim-tmux-navigator'
+"Plug 'whatyouhide/vim-lengthmatters'
 call plug#end()
 
 " Misc
@@ -32,11 +33,8 @@ set nocompatible
 set encoding=utf-8
 set backspace=indent,eol,start
 set ttyfast
-"let mapleader = "\<space>"
-set textwidth=79
-"set colorcolumn=79
 set undofile
-autocmd! bufwritepost .vimrc source %    " Automatic reloading of .vimrc
+autocmd! bufwritepost .vimrc source % " Automatic reloading of .vimrc
 set clipboard=unnamed " System clipboard integration
 au FocusLost * :wa " Save buffer when focus lost
 " Templates for new files
@@ -46,32 +44,47 @@ autocmd BufNewFile *.py 0r ~/.vim/templates/python.template
 " ======
 syntax on
 colorscheme solarized
-set background=dark
-call togglebg#map("<leader>b")
+" Adjust according to time of day
+if strftime("%H") > 8 && strftime("%H") < 19
+  set background=light
+else
+  set background=dark
+endif
+call togglebg#map("<leader>b") " Easily toggle background
 
 " Spaces & Tabs
 " =============
+filetype plugin indent on
 set expandtab
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
-filetype plugin indent on
 set autoindent
-set modelines=1
 
 " UI Config
 " =========
-set number relativenumber   " both set for hybrid line number mode
+function! ToggleWrap()
+    if (&wrap == 1)
+        set nowrap nolinebreak
+    else
+        set wrap linebreak
+    endif
+endfunction
+map <leader>w :call ToggleWrap()<CR>
+
+set nowrap nolinebreak
+set textwidth=0
+set colorcolumn=80
+:set list listchars=tab:→\ ,trail:·,precedes:❮,extends:❯
+
+set modelines=1
+set display=lastline " show partial lines wrapped past bottom of screen (stop @ display)
+set number relativenumber " both set for hybrid line number mode
 set ruler
 set history=100
-set wildmenu    " visual autocomplete for command menu
-set matchpairs+=<:>     " match < and > as well
-set showcmd     " show command in bottom bar
-set linebreak    " make wrapped lines break at spaces
-" character to show when a line has been wrapped
-set cpoptions+=n
-set showbreak=\ \ ↳\
-set display=lastline " show partial lines wrapped past bottom of screen (stop @ display)
+set wildmenu " visual autocomplete for command menu
+set matchpairs+=<:> " match < and > as well
+set showcmd " show command in bottom bar
 " bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
 map <c-j> <c-w>j
 map <c-k> <c-w>k
