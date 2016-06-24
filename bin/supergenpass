@@ -55,7 +55,8 @@ def main():
     password = '{}:{}'.format(master_password, args.domain).encode('utf-8')
     password = generate(password, args.rounds, args.algorithm)
 
-    print(password[:args.length].decode('utf-8'))
+    print(password[:args.length].decode('utf-8'), end='\n' if
+            sys.stdout.isatty() else '')
 
 
 if __name__ == '__main__':
