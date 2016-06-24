@@ -1,5 +1,30 @@
-" Vundle and bundles configuration
-source ~/.vim/bundles.vim
+" Plugins
+" =======
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
+call plug#begin()
+Plug 'altercation/vim-colors-solarized'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/bufkill.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'plasticboy/vim-markdown'
+Plug 'easymotion/vim-easymotion'
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-scripts/keepcase.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'epeli/slimux'
+Plug 'tmhedberg/SimpylFold'
+Plug 'sjl/gundo.vim'
+"Plug 'christoomey/vim-tmux-navigator'
+call plug#end()
 
 " Misc
 " ====
