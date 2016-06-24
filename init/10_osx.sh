@@ -14,7 +14,7 @@ if [[ "$(type -P brew)" ]]; then
 
     # Tools and Utils
     brew install git git-extras git-crypt
-    brew install tmux vim
+    brew install tmux tmux-mem-cpu-load vim
     brew install ack tree lesspipe htop-osx
     brew install pyenv pyenv-virtualenv
     # OS X version is usually out of date
