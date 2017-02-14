@@ -1,12 +1,12 @@
 " Plugins
 " =======
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall | source $MYVIMRC
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin()
+call plug#begin('~/.local/share/nvim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -27,6 +27,11 @@ Plug 'sjl/gundo.vim'
 "Plug 'whatyouhide/vim-lengthmatters'
 call plug#end()
 
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
+
 " Misc
 " ====
 set nocompatible
@@ -37,8 +42,6 @@ set undofile
 autocmd! bufwritepost .vimrc source % " Automatic reloading of .vimrc
 set clipboard=unnamed " System clipboard integration
 au FocusLost * :wa " Save buffer when focus lost
-" Templates for new files
-autocmd BufNewFile *.py 0r ~/.vim/templates/python.template
 
 " Colors
 " ======

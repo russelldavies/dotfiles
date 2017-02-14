@@ -10,6 +10,7 @@
     ~/bin:
     ~/.aliases:
     ~/.bashrc:
+    ~/.config/nvim:
     ~/.dircolors:
     ~/.editorconfig:
     ~/.exports:
@@ -17,14 +18,11 @@
     ~/.gitattributes_global:
     ~/.gitconfig:
     ~/.gitignore_global:
-    ~/.gvimrc:
     ~/.inputrc:
     ~/.profile:
     ~/.psqlrc:
     ~/.ssh:
     ~/.tmux.conf:
-    ~/.vim:
-    ~/.vimrc:
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
