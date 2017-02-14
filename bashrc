@@ -68,10 +68,3 @@ fi
 
 # Python version management
 [ $(type -P pyenv) ] && eval "$(pyenv init -)"
-[ $(type -P pyenv-virtualenv-init) ] && eval "$(pyenv virtualenv-init -)"
-
-# Node.js version management
-if [ $(brew --prefix nvm 2> /dev/null) ] ; then
-    export NVM_DIR=~/.nvm
-    . $(brew --prefix nvm)/nvm.sh
-fi

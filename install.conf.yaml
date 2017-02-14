@@ -1,0 +1,30 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean: ['~', '~/.config']
+
+- link:
+    ~/.dotfiles: ''
+    ~/bin:
+    ~/.aliases:
+    ~/.bashrc:
+    ~/.dircolors:
+    ~/.editorconfig:
+    ~/.exports:
+    ~/.functions:
+    ~/.gitattributes_global:
+    ~/.gitconfig:
+    ~/.gitignore_global:
+    ~/.gvimrc:
+    ~/.inputrc:
+    ~/.profile:
+    ~/.psqlrc:
+    ~/.ssh:
+    ~/.tmux.conf:
+    ~/.vim:
+    ~/.vimrc:
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
