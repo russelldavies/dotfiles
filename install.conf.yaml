@@ -26,3 +26,4 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+  - ['chmod -R u=rwX,go= ssh', Fixing ssh key permissions]
