@@ -6,8 +6,6 @@
 - clean: ['~', '~/.config']
 
 - link:
-    ~/.dotfiles: ''
-    ~/bin:
     ~/.aliases:
     ~/.bashrc:
     ~/.config/nvim:
@@ -18,11 +16,13 @@
     ~/.gitattributes_global:
     ~/.gitconfig:
     ~/.gitignore_global:
+    ~/.hammerspoon:
     ~/.inputrc:
     ~/.profile:
     ~/.psqlrc:
     ~/.ssh:
     ~/.tmux.conf:
+    ~/bin:
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
