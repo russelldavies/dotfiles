@@ -1,6 +1,2 @@
 *.sw*
 *.un~
-
-ssh/authorized_keys
-ssh/known_hosts
-ssh/config.d

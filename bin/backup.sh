@@ -7,7 +7,6 @@ if [ $# -lt 1 ]; then
 fi
 
 PATH=/usr/local/bin:$PATH
-eval $(keychain -q --eval --agents ssh id_ed25519 id_rsa)
 export BORG_REPO=$1
 export BORG_REMOTE_PATH=borg1
 

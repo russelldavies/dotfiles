@@ -63,8 +63,15 @@ if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
-# SSH key helper
-[ $(which keychain) ] && eval $(keychain -q --eval --agents ssh id_ed25519 id_rsa)
-
 # Python version management
 [ $(type -P pyenv) ] && eval "$(pyenv init -)"
+
+# Launch gpg-agent with ssh agent
+gpg-connect-agent /bye
+
+# Point the SSH_AUTH_SOCK to the one handled by gpg-agent
+if [ -S $HOME/.gnupg/S.gpg-agent.ssh ]; then
+  export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
+else
+  echo "$HOME/.gnupg/S.gpg-agent.ssh doesn't exist. Is gpg-agent running ?"
+fi
