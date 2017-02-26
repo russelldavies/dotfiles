@@ -1,8 +1,8 @@
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
-	colorflag="--color"
+    colorflag="--color"
 else # OS X `ls`
-	colorflag="-G"
+    colorflag="-G"
 fi
 
 # some more ls aliases
@@ -23,10 +23,6 @@ alias egrep='egrep --color=auto'
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Trim new lines
 alias trimnewline="tr -d '\n'"
@@ -49,10 +45,6 @@ alias badge="tput bel"
 # For example, to list all directories that contain a certain file:
 # find . -name .gitattributes | map dirname
 alias map="xargs -n1"
-
-# cp with progress via rsync
-alias rscp='rsync -aP --no-whole-file --inplace'
-alias rsmv='rscp --remove-source-files'
 
 # Useful for ephemeral hosts
 alias ssh-ignore='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "$@"'
