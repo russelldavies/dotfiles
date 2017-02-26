@@ -7,9 +7,7 @@
 
 - link:
     ~/.aliases:
-    ~/.bashrc:
     ~/.config/nvim:
-    ~/.dircolors:
     ~/.editorconfig:
     ~/.exports:
     ~/.functions:
@@ -19,11 +17,11 @@
     ~/.gnupg/gpg.conf: gnupg/gpg.conf
     ~/.gnupg/gpg-agent.conf: gnupg/gpg-agent.conf
     ~/.hammerspoon:
-    ~/.inputrc:
-    ~/.profile:
     ~/.psqlrc:
     ~/.ssh/config: ssh/config
     ~/.tmux.conf:
+    ~/.zshenv:
+    ~/.zshrc:
     ~/bin:
 
 - shell:

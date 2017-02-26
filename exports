@@ -1,25 +1,28 @@
+# Prefer US English and use UTF-8
+export LANG="en_US"
+export LC_ALL="en_US.UTF-8"
+
 # solarized color theme for OS X ls
 export CLICOLOR=1
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 
-# Make vim the default editor
-export EDITOR="vim"
-
-# Larger bash history (allow 32³ entries; default is 500)
+# zsh history settings
+# Filename for history file
+export HISTFILE=$HOME/.zhistory
+# Allow 32³ entries
 export HISTSIZE=32768
-export HISTFILESIZE=$HISTSIZE
-# Omit duplicates and commands that begin with a space from history.
-export HISTCONTROL=ignoredups:ignorespace
-# Make some commands not show up in history
-export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
-# Show timestamp in bash_history
-export HISTTIMEFORMAT="[%Y-%m-%d %H:%M:%S] "
-# Append history so new sessions can access them
-export PROMPT_COMMAND="history -a"
-
-# Prefer US English and use UTF-8
-export LANG="en_US"
-export LC_ALL="en_US.UTF-8"
+# Save history after logout
+export SAVEHIST=32768
+# Do not add these commands to history
+export HISTORY_IGNORE="(ls|cd|cd -|cd ..|pwd|exit|date)"
+# Append into history file
+setopt INC_APPEND_HISTORY
+# Save only one command if two are the same and consistent
+setopt HIST_IGNORE_DUPS
+# If command starts with space do not add to history
+setopt HIST_IGNORE_SPACE
+# Add timestamp for each entry
+setopt EXTENDED_HISTORY
 
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"
