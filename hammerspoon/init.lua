@@ -83,7 +83,7 @@ setCaffeineDisplay(hs.caffeinate.get("displayIdle"))
 -- Take image from webcam upon screen unlock
 local snapCommand = '[[ $(ioreg -r -k AppleClamshellState -d 4 |'..
 'grep \'"AppleClamshellState" = No\') ]] &&'..
-'imagesnap -q -w 5 ~/Pictures/snaps/$(date -u +%Y%m%dT%H%M%SZ).jpg &'
+'/usr/local/bin/imagesnap -q -w 5 ~/Pictures/snaps/$(date -u +%Y%m%dT%H%M%SZ).jpg &'
 local lastSnap = 0
 local powerStates = {}
 local activityWatcher = hs.caffeinate.watcher.new(function(event)
@@ -95,7 +95,7 @@ local activityWatcher = hs.caffeinate.watcher.new(function(event)
             powerStates[1] == hs.caffeinate.watcher.screensDidWake and
             (hs.timer.secondsSinceEpoch() - lastSnap) > hs.timer.hours(1) then
         lastSnap = hs.timer.secondsSinceEpoch()
-        hs.execute(snapCommand, true)
+        os.execute(snapCommand)
     end
 end)
 activityWatcher:start()
