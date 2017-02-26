@@ -14,8 +14,8 @@ borg create ::'home-{utcnow:%Y-%m-%dT%H:%M:%S}' $HOME \
     -x --compression zlib \
     --exclude-caches \
     --exclude "$HOME/Applications" \
+    --exclude "$HOME/Downloads" \
     --exclude "$HOME/Library" \
-    --exclude "$HOME/Public" \
     --exclude "$HOME/.Trash" \
     ${@:2} \
   || noti -t "Borg Backup" -m "Failed to create archive"
