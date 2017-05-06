@@ -50,13 +50,10 @@
     quotepath = false
     autocrlf = input
     # Use custom `.gitignore` and `.gitattributes`
-    excludesfile = ~/.gitignore_global
-    attributesfile = ~/.gitattributes_global
+    excludesFile = ~/.gitignore_global
+    attributesFile = ~/.gitattributes_global
     # Treat spaces before tabs and all kinds of trailing whitespace as an error
     whitespace = space-before-tab,trailing-space
-
-[color]
-    ui = true
 
 [apply]
     # Detect whitespace errors when applying a patch
@@ -65,6 +62,38 @@
 [merge]
     # Include summaries of merged commits in newly created merge commit messages
     log = true
+
+[push]
+	default = simple
+	followTags = true
+
+[help]
+    autocorrect = 10
+
+[fetch]
+	prune = true
+
+[gpg]
+	program = gpg2
+
+[commit]
+	gpgsign = true
+
+[rebase]
+	autoStash = true
+
+[log]
+	decorate = full
+
+[status]
+	showUntrackedFiles = all
+
+[diff]
+	tool = icdiff
+[difftool]
+	prompt = false
+[difftool "icdiff"]
+	cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
 
 # URL shorthands
 [url "git@github.com:"]
@@ -79,17 +108,3 @@
     pushInsteadOf = "git://gist.github.com/"
 [url "git://gist.github.com/"]
     insteadOf = "gist:"
-[push]
-	default = current
-[help]
-    autocorrect = 10
-[fetch]
-	prune = true
-[http "https://git.demo.localflynn.com"]
-	sslCAInfo = /Users/russell/.flynn/ca-certs/default.pem
-[credential "https://git.demo.localflynn.com"]
-	helper = /Users/russell/Downloads/flynn/demo/flynn git-credentials
-[gpg]
-	program = gpg2
-[commit]
-	gpgsign = true
