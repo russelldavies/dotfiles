@@ -6,6 +6,7 @@
 - clean: ['~', '~/.config']
 
 - link:
+    ~/.config/alacritty:
     ~/.aliases:
     ~/.config/nvim:
     ~/.editorconfig:
