@@ -15,7 +15,7 @@ Plug 'elmcast/elm-vim'
 Plug 'epeli/slimux'
 Plug 'qpkorr/vim-bufkill'
 Plug 'scrooloose/nerdtree'
-Plug 'simnalamburt/vim-mundo'
+Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-surround'
@@ -68,7 +68,7 @@ map <leader>w :call ToggleWrap()<CR>
 set colorcolumn=80
 set list listchars=tab:→\ ,trail:·,precedes:❮,extends:❯
 set cpoptions+=n
-set showbreak=\ \ ↳\ 
+set showbreak=\ \ ↳\
 
 set number relativenumber  " both set for hybrid line number mode
 set ruler
@@ -83,7 +83,6 @@ map <c-h> <c-w>h
 nmap <leader>s :setlocal invspell<cr>
 
 " Buffer helpers
-nmap <c-e> :e#<cr>
 nnoremap <leader>l :ls<cr>:b<space>
 
 
@@ -105,8 +104,10 @@ vnoremap <space> zf
 " Plugin Config
 " =============
 " ctrlp
-nmap <leader>r :CtrlPBuffer<CR>
-let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](.git|.hg|node_modules)$',
+  \ 'file': '\v\.(o|swp|pyc|DS_Store)$',
+  \ }
 
 " nerdtree
 map <C-n> :NERDTreeToggle<CR>
@@ -116,9 +117,12 @@ let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 set laststatus=2
 let g:airline_theme='solarized'
 
-" Mundo
-nnoremap <leader>u :MundoToggle<CR>
+" Undotree
+nnoremap <leader>u :UndotreeToggle<cr>
 
 " Ale
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_save = 1
+
+" Elm
+let g:elm_format_autosave = 1
