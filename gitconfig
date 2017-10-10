@@ -74,7 +74,7 @@
 	prune = true
 
 [gpg]
-	program = gpg2
+	program = gpg
 
 [commit]
 	gpgsign = true
