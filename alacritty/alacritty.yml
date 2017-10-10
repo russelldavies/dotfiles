@@ -20,13 +20,13 @@ draw_bold_text_with_bright_colors: true
 font:
   normal:
     family: Menlo
-    # style: Regular
+    style: Regular
   bold:
     family: Menlo
-    # style: Bold
+    style: Bold
   italic:
     family: Menlo
-    # style: Italic
+    style: Italic
   size: 11.0
   offset:
     x: 1.0
@@ -38,7 +38,7 @@ font:
 
 render_timer: false
 
-custom_cursor_colors: false
+custom_cursor_colors: true
 
 # Colors
 color_schemes:
@@ -46,6 +46,9 @@ color_schemes:
     primary:
       background: '0x002b36'
       foreground: '0x839496'
+    cursor:
+      text: '0x002b36'
+      cursor: '0x839496'
     normal:
       black:   '0x073642'
       red:     '0xdc322f'
@@ -69,6 +72,9 @@ color_schemes:
     primary:
       background: '0xfdf6e3'
       foreground: '0x586e75'
+    cursor:
+      text: '0xfdf6e3'
+      cursor: '0x586e75'
     normal:
       black:   '0x073642'
       red:     '0xdc322f'
@@ -160,7 +166,7 @@ mouse:
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
 
-hide_cursor_when_typing: false
+hide_cursor_when_typing: true
 
 # Shell
 shell:

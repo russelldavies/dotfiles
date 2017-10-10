@@ -52,7 +52,7 @@ syspip() {
 }
 
 # Terminal color scheme
-function terminal_scheme() {
+function terminal-scheme() {
     config_file=~/.config/alacritty/alacritty.yml
     # For some reason, alacritty doesn't reread the file when sed in place
     # editing is used, so pipe out and write.
