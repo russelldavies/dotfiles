@@ -54,7 +54,5 @@ syspip() {
 # Terminal color scheme
 function terminal-scheme() {
     config_file=~/.config/alacritty/alacritty.yml
-    # For some reason, alacritty doesn't reread the file when sed in place
-    # editing is used, so pipe out and write.
-    sed "s/\(^colors: \*\).*/\1$1/g" $config_file | sponge $config_file
+    sed -i "" "s/\(^colors: \*\).*/\1$1/g" $config_file
 }
