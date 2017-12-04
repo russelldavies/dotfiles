@@ -7,8 +7,9 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'altercation/vim-colors-solarized'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'lifepillar/vim-solarized8'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elmcast/elm-vim'
@@ -22,8 +23,8 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 "Plug 'whatyouhide/vim-lengthmatters'
-
 call plug#end()
 
 autocmd VimEnter *
@@ -36,13 +37,24 @@ autocmd VimEnter *
 " ====
 set undofile
 set clipboard=unnamed  " System clipboard integration
+nmap <leader>s :setlocal invspell<CR>
 
 
 " Colors
 " ======
-colorscheme solarized
-set background=dark
-call togglebg#map("<leader>b")  " Easily toggle background
+colorscheme solarized8_dark
+" Toggle between dark and light background
+nnoremap  <leader>b :<c-u>exe "colors" (g:colors_name =~# "dark"
+    \ ? substitute(g:colors_name, 'dark', 'light', '')
+    \ : substitute(g:colors_name, 'light', 'dark', '')
+    \ )<cr>
+" Tune contrast level
+fun! Solarized8Contrast(delta)
+  let l:schemes = map(["_low", "_flat", "", "_high"], '"solarized8_".(&background).v:val')
+  exe "colors" l:schemes[((a:delta+index(l:schemes, g:colors_name)) % 4 + 4) % 4]
+endf
+nmap <leader>- :<c-u>call Solarized8Contrast(-v:count1)<cr>
+nmap <leader>+ :<c-u>call Solarized8Contrast(+v:count1)<cr>
 
 
 " Spaces & Tabs
@@ -76,20 +88,16 @@ set showcmd
 
 " bind Ctrl+<movement> keys to move around the windows, instead of using
 " Ctrl+w + <movement>
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
-nmap <leader>s :setlocal invspell<cr>
-
-" Buffer helpers
-nnoremap <leader>l :ls<cr>:b<space>
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+map <C-h> <C-w>h
 
 
 " Search
 " ======
 set ignorecase smartcase
-nnoremap <leader>q :nohlsearch<cr>
+nnoremap <leader>q :nohlsearch<CR>
 
 
 " Folding
@@ -103,12 +111,6 @@ vnoremap <space> zf
 
 " Plugin Config
 " =============
-" ctrlp
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](.git|.hg|node_modules)$',
-  \ 'file': '\v\.(o|swp|pyc|DS_Store)$',
-  \ }
-
 " nerdtree
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
@@ -118,7 +120,7 @@ set laststatus=2
 let g:airline_theme='solarized'
 
 " Undotree
-nnoremap <leader>u :UndotreeToggle<cr>
+nnoremap <leader>u :UndotreeToggle<CR>
 
 " Ale
 let g:ale_lint_on_text_changed = 0
@@ -126,3 +128,17 @@ let g:ale_lint_on_save = 1
 
 " Elm
 let g:elm_format_autosave = 1
+let g:elm_setup_keybindings = 0
+
+
+" fzf
+nmap <leader>f :Files<CR>
+nmap <leader>; :Buffers<CR>
+nmap <leader>l :Lines<CR>
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+nmap <leader>r :Rg<CR>
