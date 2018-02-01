@@ -24,6 +24,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'leafgarland/typescript-vim'
 "Plug 'whatyouhide/vim-lengthmatters'
 call plug#end()
 
