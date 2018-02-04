@@ -90,10 +90,10 @@ local activityWatcher = hs.caffeinate.watcher.new(function(event)
     table.insert(powerStates, event)
     if event == hs.caffeinate.watcher.screensDidLock then
         powerStates = {}
-    -- There are three wakeup events in quick succession
+        -- There are three wakeup events in quick succession
     elseif #powerStates == 3 and
-            powerStates[1] == hs.caffeinate.watcher.screensDidWake and
-            (hs.timer.secondsSinceEpoch() - lastSnap) > hs.timer.hours(1) then
+        powerStates[1] == hs.caffeinate.watcher.screensDidWake and
+        (hs.timer.secondsSinceEpoch() - lastSnap) > hs.timer.hours(1) then
         lastSnap = hs.timer.secondsSinceEpoch()
         os.execute(snapCommand)
     end
@@ -101,10 +101,21 @@ end)
 activityWatcher:start()
 
 
--- Lockscreen keyboard shortcut
-hs.hotkey.bind({"cmd", "shift"}, "L", function()
-    hs.caffeinate.lockScreen()
+-- Randomish MAC address depending on WiFi SSID
+local wifiWatcher = hs.wifi.watcher.new(function()
+    local wifiName = hs.wifi.currentNetwork()
+    if wifiName then
+        local hash = hs.hash.SHA256(wifiName .. os.date('%Y-%m-%d'))
+        t = {}
+        for i in string.gmatch(string.sub(hash, 0, 10), '%S%S') do
+            table.insert(t, i)
+        end
+        macAddress = '02:' .. table.concat(t, ':')
+        -- Make sure ifconfig is in sudoers with NOPASSWD
+        os.execute("sudo ifconfig en0 ether " .. macAddress)
+    end
 end)
+wifiWatcher:start()
 
 
 -- Backup menu item
