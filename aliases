@@ -57,3 +57,6 @@ alias yaml2json="python -c 'import sys, yaml, json; json.dump(yaml.load(sys.stdi
 alias sleepsafe='sudo pmset -a destroyfvkeyonstandby 1 hibernatemode 25'
 alias sleepfast='sudo pmset -a hibernatemode 0'
 alias sleepdefault='sudo pmset -a hibernatemode 3'
+
+alias tsd="terminal-scheme dark"
+alias tsl="terminal-scheme light"
