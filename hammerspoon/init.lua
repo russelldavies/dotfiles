@@ -95,6 +95,7 @@ end)
 activityWatcher:start()
 
 
+
 -- Randomish MAC address depending on WiFi SSID
 local wifiWatcher = hs.wifi.watcher.new(function()
     local wifiName = hs.wifi.currentNetwork()
@@ -130,3 +131,68 @@ backupMenubar:setClickCallback(function()
     setbackupDisplay(toggleBackup(backupEnabled()))
 end)
 setbackupDisplay(backupEnabled())
+
+
+-- Local vs network DNS
+local dnsMenubar = hs.menubar.new()
+
+local dnsSecure = function()
+    local handle = io.popen('networksetup -getdnsservers Wi-Fi')
+    local servers = handle:read('*a')
+    handle:close()
+    return servers == '127.0.0.1\n'
+end
+
+local toggleDns = function()
+    if dnsSecure() then
+        os.execute('sudo networksetup -setdnsservers Wi-Fi "Empty"')
+    else
+        os.execute('sudo networksetup -setdnsservers Wi-Fi "127.0.0.1"')
+    end
+end
+
+local setDnsDisplay = function()
+    if dnsSecure() then
+        dnsMenubar:setTitle("🔗")
+    else
+        dnsMenubar:setTitle("🔗❌")
+    end
+end
+
+dnsMenubar:setClickCallback(function()
+    toggleDns()
+    setDnsDisplay()
+end)
+
+setDnsDisplay()
+
+
+-- VPN
+local vpnMenubar = hs.menubar.new()
+
+local vpnEnabled = function()
+    return hs.fs.displayName('/var/run/wireguard/utun1.sock')
+end
+
+local toggleVpn = function()
+    if vpnEnabled() then
+        hs.execute("sudo /usr/local/bin/wg-quick down mullvad-gb2", true)
+    else
+        hs.execute("sudo /usr/local/bin/wg-quick up mullvad-gb2", true)
+    end
+end
+
+local setVpnDisplay = function()
+    if vpnEnabled() then
+        vpnMenubar:setTitle("🔐")
+    else
+        vpnMenubar:setTitle("🔓")
+    end
+end
+
+vpnMenubar:setClickCallback(function()
+    toggleVpn()
+    setVpnDisplay()
+end)
+
+setVpnDisplay()
