@@ -85,15 +85,9 @@ local snapCommand = '[[ $(ioreg -r -k AppleClamshellState -d 4 |'..
 'grep \'"AppleClamshellState" = No\') ]] &&'..
 '/usr/local/bin/imagesnap -q -w 5 ~/Pictures/snaps/$(date -u +%Y%m%dT%H%M%SZ).jpg &'
 local lastSnap = 0
-local powerStates = {}
+local function timePassed() return (hs.timer.secondsSinceEpoch() - lastSnap) > hs.timer.hours(3) end
 local activityWatcher = hs.caffeinate.watcher.new(function(event)
-    table.insert(powerStates, event)
-    if event == hs.caffeinate.watcher.screensDidLock then
-        powerStates = {}
-        -- There are three wakeup events in quick succession
-    elseif #powerStates == 3 and
-        powerStates[1] == hs.caffeinate.watcher.screensDidWake and
-        (hs.timer.secondsSinceEpoch() - lastSnap) > hs.timer.hours(1) then
+	if event == hs.caffeinate.watcher.screensDidUnlock and timePassed() then
         lastSnap = hs.timer.secondsSinceEpoch()
         os.execute(snapCommand)
     end
