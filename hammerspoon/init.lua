@@ -165,34 +165,3 @@ dnsMenubar:setClickCallback(function()
 end)
 
 setDnsDisplay()
-
-
--- VPN
-local vpnMenubar = hs.menubar.new()
-
-local vpnEnabled = function()
-    return hs.fs.displayName('/var/run/wireguard/utun1.sock')
-end
-
-local toggleVpn = function()
-    if vpnEnabled() then
-        hs.execute("sudo /usr/local/bin/wg-quick down mullvad-gb2", true)
-    else
-        hs.execute("sudo /usr/local/bin/wg-quick up mullvad-gb2", true)
-    end
-end
-
-local setVpnDisplay = function()
-    if vpnEnabled() then
-        vpnMenubar:setTitle("🔐")
-    else
-        vpnMenubar:setTitle("🔓")
-    end
-end
-
-vpnMenubar:setClickCallback(function()
-    toggleVpn()
-    setVpnDisplay()
-end)
-
-setVpnDisplay()
