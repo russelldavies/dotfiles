@@ -17,8 +17,15 @@ borg create ::'home-{utcnow:%Y-%m-%dT%H:%M:%S}' $HOME \
     --exclude "$HOME/Downloads" \
     --exclude "$HOME/Library" \
     --exclude "$HOME/.Trash" \
+    --exclude "**/node_modules" \
     ${@:2} \
   || noti -t "Borg Backup" -m "Failed to create archive"
 
-borg prune --prefix 'home-' --keep-hourly=12 --keep-daily=7 --keep-weekly=4 --keep-monthly=6 \
+borg prune \
+    --prefix 'home-' \
+    --keep-hourly=12 \
+    --keep-daily=7 \
+    --keep-weekly=4 \
+    --keep-monthly=12 \
+    --keep-yearly=3 \
   || noti -t "Borg Backup" -m "Failed to prune"
