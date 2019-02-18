@@ -1,62 +1,56 @@
-env:
-  TERM: xterm-256color
-
 window:
   dimensions:
     columns: 80
     lines: 24
-
   padding:
     x: 2
     y: 2
+  dynamic_padding: false
+  decorations: full
+  start_maximized: false
 
-  decorations: true
+scrolling:
+  history: 0
+  multiplier: 3
+  faux_multiplier: 3
+  auto_scroll: false
 
 tabspaces: 8
-
-draw_bold_text_with_bright_colors: true
 
 font:
   normal:
     family: Menlo
     style: Regular
-
   bold:
     family: Menlo
     style: Regular
-
   italic:
     family: Menlo
     style: Italic
-
   size: 11.0
-
   offset:
     x: 1
     y: 0
-
   glyph_offset:
     x: 0
     y: 0
-
-  scale_with_dpi: true
-
   use_thin_strokes: true
 
 render_timer: false
 
-custom_cursor_colors: true
+persistent_logging: false
+
+draw_bold_text_with_bright_colors: true
+
 
 color_schemes:
   solarized_dark: &dark
     primary:
       background: '0x002b36'
       foreground: '0x839496'
-
     cursor:
       text: '0x002b36'
       cursor: '0x839496'
-
     normal:
       black:   '0x073642'
       red:     '0xdc322f'
@@ -66,7 +60,6 @@ color_schemes:
       magenta: '0xd33682'
       cyan:    '0x2aa198'
       white:   '0xeee8d5'
-
     bright:
       black:   '0x002b36'
       red:     '0xcb4b16'
@@ -81,11 +74,9 @@ color_schemes:
     primary:
       background: '0xfdf6e3'
       foreground: '0x586e75'
-
     cursor:
       text: '0xfdf6e3'
       cursor: '0x586e75'
-
     normal:
       black:   '0x073642'
       red:     '0xdc322f'
@@ -95,7 +86,6 @@ color_schemes:
       magenta: '0xd33682'
       cyan:    '0x2aa198'
       white:   '0xeee8d5'
-
     bright:
       black:   '0x002b36'
       red:     '0xcb4b16'
@@ -120,21 +110,23 @@ mouse_bindings:
 mouse:
   double_click: { threshold: 300 }
   triple_click: { threshold: 300 }
-  faux_scrollback_lines: 1
+  hide_when_typing: true
+  url:
+    launcher: open
+    modifiers: Shift
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
+  save_to_clipboard: true
 
-dynamic_title: true
-
-hide_cursor_when_typing: true
-
-cursor_style: Block
+cursor:
+  style: Block
+  unfocused_hollow: true
 
 live_config_reload: true
 
 shell:
-  program: /bin/zsh
+  program: /usr/local/bin/zsh
   args:
     - --login
 
