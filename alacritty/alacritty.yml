@@ -1,13 +1,13 @@
 window:
   dimensions:
-    columns: 80
-    lines: 24
+    columns: 0
+    lines: 0
   padding:
     x: 2
     y: 2
   dynamic_padding: false
   decorations: full
-  start_maximized: false
+  startup_mode: Windowed
 
 scrolling:
   history: 0
@@ -36,12 +36,7 @@ font:
     y: 0
   use_thin_strokes: true
 
-render_timer: false
-
-persistent_logging: false
-
 draw_bold_text_with_bright_colors: true
-
 
 color_schemes:
   solarized_dark: &dark
@@ -131,6 +126,7 @@ shell:
     - --login
 
 key_bindings:
+  - { key: F,      mods: Command|Control, action: ToggleSimpleFullscreen }
   - { key: V,        mods: Control|Shift,    action: Paste               }
   - { key: C,        mods: Control|Shift,    action: Copy                }
   - { key: Paste,                   action: Paste                        }
