@@ -131,37 +131,3 @@ backupMenubar:setClickCallback(function()
     setbackupDisplay(toggleBackup(backupEnabled()))
 end)
 setbackupDisplay(backupEnabled())
-
-
--- Local vs network DNS
-local dnsMenubar = hs.menubar.new()
-
-local dnsSecure = function()
-    local handle = io.popen('networksetup -getdnsservers Wi-Fi')
-    local servers = handle:read('*a')
-    handle:close()
-    return servers == '127.0.0.1\n'
-end
-
-local toggleDns = function()
-    if dnsSecure() then
-        os.execute('sudo networksetup -setdnsservers Wi-Fi "Empty"')
-    else
-        os.execute('sudo networksetup -setdnsservers Wi-Fi "127.0.0.1"')
-    end
-end
-
-local setDnsDisplay = function()
-    if dnsSecure() then
-        dnsMenubar:setTitle("🔗")
-    else
-        dnsMenubar:setTitle("🔗❌")
-    end
-end
-
-dnsMenubar:setClickCallback(function()
-    toggleDns()
-    setDnsDisplay()
-end)
-
-setDnsDisplay()
