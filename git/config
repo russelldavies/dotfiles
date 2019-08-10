@@ -49,9 +49,6 @@
 [core]
     quotepath = false
     autocrlf = input
-    # Use custom `.gitignore` and `.gitattributes`
-    excludesFile = ~/.gitignore_global
-    attributesFile = ~/.gitattributes_global
     # Treat spaces before tabs and all kinds of trailing whitespace as an error
     whitespace = space-before-tab,trailing-space
 
