@@ -60,3 +60,5 @@ alias sleepdefault='sudo pmset -a hibernatemode 3'
 
 alias tsd="terminal-scheme dark"
 alias tsl="terminal-scheme light"
+
+alias gpg-rekey='gpg-connect-agent "scd serialno" "learn --force" /bye'
