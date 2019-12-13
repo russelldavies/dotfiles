@@ -24,15 +24,10 @@ for file in $HOME/.{exports,aliases,functions,extra}; do
 done;
 unset file;
 
-# Launch gpg-agent with ssh agent
-gpg-connect-agent /bye
-
-# Point the SSH_AUTH_SOCK to the one handled by gpg-agent
-if [ -S $HOME/.gnupg/S.gpg-agent.ssh ]; then
-  export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
-else
-  echo "$HOME/.gnupg/S.gpg-agent.ssh doesn't exist. Is gpg-agent running ?"
-fi
+# Use gpg-agent for SSH
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
