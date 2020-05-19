@@ -1,7 +1,7 @@
 [user]
     name = Russell Davies
     email = russell@zeroflux.net
-    signingkey = 0xDA4B04BC5CE0B6FE
+    useConfigOnly = true
 
 [alias]
     # From: http://www.metacircus.com/hacking/2011/02/18/play-git-like-a-violin.html
@@ -69,12 +69,6 @@
 
 [fetch]
 	prune = true
-
-[gpg]
-	program = gpg
-
-[commit]
-	gpgsign = true
 
 [rebase]
 	autoStash = true

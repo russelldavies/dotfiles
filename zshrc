@@ -18,10 +18,8 @@ for file in $HOME/.{exports,aliases,functions}; do
 done;
 unset file;
 
-# Use gpg-agent for SSH
-export GPG_TTY="$(tty)"
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
+# YubiKey PIV SSH
+export SSH_AUTH_SOCK="/usr/local/var/run/yubikey-agent.sock"
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
