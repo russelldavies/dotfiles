@@ -34,19 +34,7 @@ function codepoint() {
     echo # newline
 }
 
-# sshuttle daemoned tunnel
-function tunnel() {
-    if [ -z $1 ]; then
-        echo "Usage: $FUNCNAME [username@]hostname"
-    else
-        sshuttle --dns --daemon --pidfile=/tmp/sshuttle.pid --remote=$1 0/0
-    fi
-}
-function tunnelx() {
-    [[ -f /tmp/sshuttle.pid ]] && kill $(cat /tmp/sshuttle.pid) && echo "Disconnected."
-}
-
-# Terminal color scheme
+# Alacritty terminal color scheme
 function terminal-scheme() {
     config_file=~/.config/alacritty/alacritty.yml
     sed -i "" "s/\(^colors: \*\).*/\1$1/g" $config_file

@@ -62,3 +62,7 @@ alias tsd="terminal-scheme dark"
 alias tsl="terminal-scheme light"
 
 alias gpg-rekey='gpg-connect-agent "scd serialno" "learn --force" /bye'
+
+alias ip='ip -brief -color'
+
+alias journal='${VISUAL:-${EDITOR:-vi}} ~/wiki/journal/$(gdate -I).md'
