@@ -111,23 +111,3 @@ local wifiWatcher = hs.wifi.watcher.new(function()
     end
 end)
 wifiWatcher:start()
-
-
--- Backup menu item
-local backupMenubar = hs.menubar.new()
-local backupEnabled = function() return os.execute('launchctl list local.backup') end
-local toggleBackup = function(enabled)
-    local action = 'load'
-    if enabled then action = 'unload' end
-    os.execute(string.format('launchctl %s ~/Library/LaunchAgents/local.backup.plist', action))
-    return not enabled
-end
-local setbackupDisplay = function(enabled)
-    icon = "💾"
-    if not enabled then icon = icon .. "❌" end
-    backupMenubar:setTitle(icon)
-end
-backupMenubar:setClickCallback(function()
-    setbackupDisplay(toggleBackup(backupEnabled()))
-end)
-setbackupDisplay(backupEnabled())

@@ -39,3 +39,14 @@ function terminal-scheme() {
     config_file=~/.config/alacritty/alacritty.yml
     sed -i "" "s/\(^colors: \*\).*/\1$1/g" $config_file
 }
+
+backup-toggle() {
+    launchctl list local.backup &> /dev/null
+    if [ $? -eq 0 ]; then
+        launchctl unload ~/Library/LaunchAgents/local.backup.plist
+	echo Disabled
+    else
+        launchctl load ~/Library/LaunchAgents/local.backup.plist
+        echo Enabled
+    fi
+}
