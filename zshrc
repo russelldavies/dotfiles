@@ -1,6 +1,5 @@
 # zplug - zsh plugin manager
 source ~/.zplug/init.zsh
-zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "mafredri/zsh-async", from:github
 zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
@@ -41,3 +40,9 @@ export KEYTIMEOUT=1
 
 # direnv
 eval "$(direnv hook zsh)"
+
+zstyle ':completion:*' rehash true
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
