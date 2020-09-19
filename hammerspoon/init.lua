@@ -81,19 +81,16 @@ setCaffeineDisplay(hs.caffeinate.get("displayIdle"))
 
 
 -- Take image from webcam upon screen unlock
-local snapCommand = '[[ $(ioreg -r -k AppleClamshellState -d 4 |'..
-'grep \'"AppleClamshellState" = No\') ]] &&'..
-'/usr/local/bin/imagesnap -q -w 5 ~/Pictures/snaps/$(date -u +%Y%m%dT%H%M%SZ).jpg &'
+local snapCommand = '/usr/local/bin/imagesnap -q -w 5 ~/Pictures/snaps/$(date -u +%Y%m%dT%H%M%SZ).jpg'
 local lastSnap = 0
 local function timePassed() return (hs.timer.secondsSinceEpoch() - lastSnap) > hs.timer.hours(3) end
 local activityWatcher = hs.caffeinate.watcher.new(function(event)
-	if event == hs.caffeinate.watcher.screensDidUnlock and timePassed() then
-        lastSnap = hs.timer.secondsSinceEpoch()
-        os.execute(snapCommand)
+    if event == hs.caffeinate.watcher.screensDidUnlock and hs.screen.primaryScreen():name() == "Color LCD" and timePassed() then
+      lastSnap = hs.timer.secondsSinceEpoch()
+      os.execute(snapCommand)
     end
 end)
 activityWatcher:start()
-
 
 
 -- Randomish MAC address depending on WiFi SSID
