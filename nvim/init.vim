@@ -7,7 +7,13 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'lifepillar/vim-solarized8'
+
+Plug 'altercation/vim-colors-solarized'
+"Plug 'lifepillar/vim-solarized8'
+"Plug 'romainl/flattened'
+"Plug 'iCyMind/NeoSolarized'
+
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'easymotion/vim-easymotion'
@@ -25,7 +31,10 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'leafgarland/typescript-vim'
+Plug 'othree/html5.vim'
 "Plug 'whatyouhide/vim-lengthmatters'
+Plug 'neovimhaskell/haskell-vim'
+"Plug 'ambv/black'
 call plug#end()
 
 autocmd VimEnter *
@@ -43,19 +52,20 @@ nmap <leader>s :setlocal invspell<CR>
 
 " Colors
 " ======
-colorscheme solarized8_dark
+colorscheme solarized
+"colorscheme flattened_dark
 " Toggle between dark and light background
-nnoremap  <leader>b :<c-u>exe "colors" (g:colors_name =~# "dark"
-    \ ? substitute(g:colors_name, 'dark', 'light', '')
-    \ : substitute(g:colors_name, 'light', 'dark', '')
-    \ )<cr>
-" Tune contrast level
-fun! Solarized8Contrast(delta)
-  let l:schemes = map(["_low", "_flat", "", "_high"], '"solarized8_".(&background).v:val')
-  exe "colors" l:schemes[((a:delta+index(l:schemes, g:colors_name)) % 4 + 4) % 4]
-endf
-nmap <leader>- :<c-u>call Solarized8Contrast(-v:count1)<cr>
-nmap <leader>+ :<c-u>call Solarized8Contrast(+v:count1)<cr>
+"nnoremap  <leader>b :<c-u>exe "colors" (g:colors_name =~# "dark"
+"    \ ? substitute(g:colors_name, 'dark', 'light', '')
+"    \ : substitute(g:colors_name, 'light', 'dark', '')
+"    \ )<cr>
+"" Tune contrast level
+"fun! Solarized8Contrast(delta)
+"  let l:schemes = map(["_low", "_flat", "", "_high"], '"solarized8_".(&background).v:val')
+"  exe "colors" l:schemes[((a:delta+index(l:schemes, g:colors_name)) % 4 + 4) % 4]
+"endf
+"nmap <leader>- :<c-u>call Solarized8Contrast(-v:count1)<cr>
+"nmap <leader>+ :<c-u>call Solarized8Contrast(+v:count1)<cr>
 
 
 " Spaces & Tabs
@@ -110,6 +120,15 @@ nnoremap <space> za
 vnoremap <space> zf
 
 
+" netrw
+" =====
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 20
+
+
 " Plugin Config
 " =============
 " nerdtree
@@ -124,12 +143,13 @@ let g:airline_theme='solarized'
 nnoremap <leader>u :UndotreeToggle<CR>
 
 " Ale
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_linters = { 'haskell': ['hlint', 'hdevtools'] }
 
 " Elm
 let g:elm_format_autosave = 1
 let g:elm_setup_keybindings = 0
+let g:elm_format_fail_silently = 1
 
 
 " fzf
@@ -143,3 +163,15 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 nmap <leader>r :Rg<CR>
+
+noremap <silent> <C-S>          :update<CR>
+vnoremap <silent> <C-S>         <C-C>:update<CR>
+inoremap <silent> <C-S>         <C-O>:update<CR>
+
+
+noremap <silent> <C-q>          :bd<CR>
+vnoremap <silent> <C-q>         <C-C>:bd<CR>
+inoremap <silent> <C-q>         <C-O>:bd<CR>
+
+
+command Exec set splitright | vnew | set filetype=sh | read !sh #
