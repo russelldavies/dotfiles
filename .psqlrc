@@ -10,6 +10,6 @@
 \set HISTCONTROL ignoredups
 \set COMP_KEYWORD_CASE lower
 SET timezone TO 'UTC';
-\setenv EDITOR 'nvim -u NONE'
+\setenv EDITOR 'kak'
 \timing on
 \unset QUIET
