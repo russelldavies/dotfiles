@@ -1,0 +1,105 @@
+# Plugins
+# ───────
+evaluate-commands %sh{
+    XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
+    [ ! -f "$XDG_DATA_HOME/kak/plug/rc/plug.kak" ] && git clone --quiet https://github.com/robertmeta/plug.kak.git "$XDG_DATA_HOME/kak/plug"
+    echo "source $XDG_DATA_HOME/kak/plug/rc/plug.kak"
+}
+
+plug "robertmeta/plug.kak" noload config %{
+    set-option global plug_always_ensure true
+}
+
+plug "lePerdu/kakboard" %{
+    hook global WinCreate .* %{ kakboard-enable }
+}
+
+plug "andreyorst/fzf.kak" config %{
+    map global normal '<c-p>' ': fzf-mode<ret>'
+}
+
+plug "andreyorst/smarttab.kak" defer smarttab %{
+    set-option global softtabstop 4
+} config %{
+    hook global WinSetOption filetype=(python|elm|rust|markdown|kak|javascript|sh) expandtab
+    hook global WinSetOption filetype=(makefile|gas) noexpandtab
+    hook global WinSetOption filetype=(c|cpp) smarttab
+}
+
+plug "kak-lsp/kak-lsp" do %{
+    cargo install --locked --force --path .
+} config %{
+    hook global WinSetOption filetype=(rust|elm|python|javascript) %{
+        lsp-enable-window
+        map window user 1 ': lsp-auto-hover-enable<ret>' -docstring 'Enable lsp hover'
+        map window user 2 ': lsp-auto-hover-disable<ret>' -docstring 'Disable lsp hover'
+    }
+    hook global WinSetOption filetype=rust %{
+        set-option window lsp_server_configuration rust.clippy_preference="on"
+        hook window -group rust-inlay-hints BufReload .* rust-analyzer-inlay-hints
+        hook window -group rust-inlay-hints NormalIdle .* rust-analyzer-inlay-hints
+        hook window -group rust-inlay-hints InsertIdle .* rust-analyzer-inlay-hints
+        hook -once -always window WinSetOption filetype=.* %{
+            remove-hooks window rust-inlay-hints
+        }
+    }
+    hook global WinSetOption filetype=python %{
+        set-option window lsp_server_configuration pyls.configurationSources=["flake8"]
+    }
+    hook global WinSetOption filetype=(rust|elm) %{
+        set-option window lsp_insert_spaces true
+        #hook window BufWritePre .* lsp-formatting
+        hook window NormalIdle lsp-formatting
+    }
+    map global user n -docstring 'go to current error/warning from lsp' ': lsp-find-error --include-warnings<ret>'
+    map global user -docstring 'lsp mode' l ': enter-user-mode lsp<ret>'
+}
+
+# Editorconfig
+# ────────────────────
+hook global BufOpenFile .* %{ editorconfig-load }
+hook global BufNewFile .* %{ editorconfig-load }
+
+# User preference
+# ───────────────
+colorscheme solarized-light
+
+set-option global scrolloff '3,7'
+set-option global formatcmd par
+
+add-highlighter global/ number-lines -relative -hlcursor
+add-highlighter global/ show-matching
+add-highlighter global/ column '%opt{autowrap_column}' default,rgba:8080801e
+add-highlighter global/ regex \h+$ 0:Error
+
+# Various mappings
+# ────────────────
+map global user z ': colorscheme solarized-dark<ret>' -docstring 'Dark colorscheme'
+map global user x ': colorscheme solarized-light<ret>' -docstring 'Light colorscheme'
+map global normal '#' ': comment-line<ret>'
+
+# tmux splits
+# ───────────────
+define-command -docstring "split <filename>: open file in horizontal tmux split" \
+split -params 0.. -file-completion %{
+  tmux-terminal-vertical kak -c %val{session} %arg{@}
+}
+alias global sp split
+
+define-command -docstring "vsplit <filename>: open file in vertical tmux split" \
+vsplit -params 0.. -file-completion %{
+  tmux-terminal-horizontal kak -c %val{session} %arg{@}
+}
+alias global vs vsplit
+
+define-command -docstring "horizontally: run command in horizontal split" \
+horizontally -params 0.. -command-completion %{
+  tmux-terminal-vertical kak -c %val{session} -e "%arg{@}"
+}
+alias global horiz horizontally
+
+define-command -docstring "vertically: run command in vertical split" \
+vertically -params 0.. -command-completion %{
+  tmux-terminal-horizontal kak -c %val{session} -e "%arg{@}"
+}
+alias global vert vertically
