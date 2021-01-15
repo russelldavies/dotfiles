@@ -19,19 +19,6 @@ for file in $HOME/.{exports,aliases,functions}; do
 done;
 unset file;
 
-# vim mode
-bindkey -v
-bindkey '^p' up-history
-bindkey '^n' down-history
-bindkey '^?' backward-delete-char
-bindkey '^h' backward-delete-char
-bindkey '^w' backward-kill-word
-bindkey '^r' history-incremental-search-backward
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
-export KEYTIMEOUT=1
-
 # YubiKey PIV SSH
 export SSH_AUTH_SOCK="/usr/local/var/run/yubikey-agent.sock"
 
