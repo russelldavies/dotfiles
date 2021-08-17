@@ -1,4 +1,4 @@
 PATH=$HOME/bin:$PATH
-PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
-PATH=node_modules/.bin:$PATH
 PATH="/usr/local/sbin:$PATH"
+PATH=node_modules/.bin:$PATH
+. "$HOME/.cargo/env"
