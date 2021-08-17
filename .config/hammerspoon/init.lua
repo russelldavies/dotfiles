@@ -1,3 +1,6 @@
+-- To use XDG_CONFIG_HOME
+-- defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
+
 -- Autoreload this config file
 function reloadConfig(files)
     doReload = false
