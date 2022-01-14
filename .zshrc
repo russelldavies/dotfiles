@@ -24,6 +24,3 @@ export SSH_AUTH_SOCK="/usr/local/var/run/yubikey-agent.sock"
 
 # direnv
 eval "$(direnv hook zsh)"
-
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
