@@ -1,16 +1,18 @@
 # Plugins
 # ───────
 evaluate-commands %sh{
-    XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
-    [ ! -f "$XDG_DATA_HOME/kak/plug/rc/plug.kak" ] && git clone --quiet https://github.com/robertmeta/plug.kak.git "$XDG_DATA_HOME/kak/plug"
-    echo "source $XDG_DATA_HOME/kak/plug/rc/plug.kak"
+    XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
+    plugins="$XDG_CACHE_HOME/kak/plugins"
+    mkdir -p "$plugins"
+    [ ! -e "$plugins/plug.kak" ] && \
+        git clone -q https://github.com/andreyorst/plug.kak.git "$plugins/plug.kak"
+    printf "%s\n" "source '$plugins/plug.kak/rc/plug.kak'"
 }
-
-plug "robertmeta/plug.kak" noload config %{
+plug "andreyorst/plug.kak" noload config %{
     set-option global plug_always_ensure true
 }
 
-plug "lePerdu/kakboard" %{
+plug "lePerdu/kakboard" config %{
     hook global WinCreate .* %{ kakboard-enable }
 }
 
@@ -26,9 +28,7 @@ plug "andreyorst/smarttab.kak" defer smarttab %{
     hook global WinSetOption filetype=(c|cpp) smarttab
 }
 
-plug "kak-lsp/kak-lsp" do %{
-    cargo install --locked --force --path .
-} config %{
+plug "kak-lsp/kak-lsp" config %{
     hook global WinSetOption filetype=(rust|elm|python|javascript) %{
         lsp-enable-window
         map window user 1 ': lsp-auto-hover-enable<ret>' -docstring 'Enable lsp hover'
@@ -46,17 +46,22 @@ plug "kak-lsp/kak-lsp" do %{
     hook global WinSetOption filetype=python %{
         set-option window lsp_server_configuration pyls.configurationSources=["flake8"]
     }
+    # hook global WinSetOption filetype=(rust|elm) %{
+    #    set-option window lsp_insert_spaces true
+    #    hook window BufWritePre .* lsp-formatting-sync
+    #    hook window NormalIdle lsp-formatting
+    # }
     hook global WinSetOption filetype=(rust|elm) %{
-        set-option window lsp_insert_spaces true
-        #hook window BufWritePre .* lsp-formatting
-        hook window NormalIdle lsp-formatting
+        hook window BufWritePre .* lsp-formatting-sync
     }
     map global user n -docstring 'go to current error/warning from lsp' ': lsp-find-error --include-warnings<ret>'
     map global user -docstring 'lsp mode' l ': enter-user-mode lsp<ret>'
 }
 
+plug "eraserhd/kak-ansi"
+
 # Editorconfig
-# ────────────────────
+# ────────────
 hook global BufOpenFile .* %{ editorconfig-load }
 hook global BufNewFile .* %{ editorconfig-load }
 
