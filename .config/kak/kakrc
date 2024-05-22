@@ -29,6 +29,8 @@ plug "andreyorst/smarttab.kak" defer smarttab %{
 }
 
 plug "kak-lsp/kak-lsp" config %{
+    # set global lsp_cmd "kak-lsp -s %val{session} -vvv --log /tmp/kak-lsp.log"
+
     hook global WinSetOption filetype=(rust|elm|python|javascript) %{
         lsp-enable-window
         map window user 1 ': lsp-auto-hover-enable<ret>' -docstring 'Enable lsp hover'
@@ -46,19 +48,16 @@ plug "kak-lsp/kak-lsp" config %{
     hook global WinSetOption filetype=python %{
         set-option window lsp_server_configuration pyls.configurationSources=["flake8"]
     }
-    # hook global WinSetOption filetype=(rust|elm) %{
-    #    set-option window lsp_insert_spaces true
-    #    hook window BufWritePre .* lsp-formatting-sync
-    #    hook window NormalIdle lsp-formatting
-    # }
     hook global WinSetOption filetype=(rust|elm) %{
-        hook window BufWritePre .* lsp-formatting-sync
+        hook window BufWritePre .* lsp-formatting
     }
     map global user n -docstring 'go to current error/warning from lsp' ': lsp-find-error --include-warnings<ret>'
     map global user -docstring 'lsp mode' l ': enter-user-mode lsp<ret>'
 }
 
 plug "eraserhd/kak-ansi"
+
+plug "TeddyDD/kakoune-selenized" domain "GitHub.com" theme
 
 # Editorconfig
 # ────────────
@@ -67,7 +66,7 @@ hook global BufNewFile .* %{ editorconfig-load }
 
 # User preference
 # ───────────────
-colorscheme solarized-light
+colorscheme selenized-light
 
 set-option global scrolloff '3,7'
 set-option global formatcmd par
@@ -79,32 +78,6 @@ add-highlighter global/ regex \h+$ 0:Error
 
 # Various mappings
 # ────────────────
-map global user z ': colorscheme solarized-dark<ret>' -docstring 'Dark colorscheme'
-map global user x ': colorscheme solarized-light<ret>' -docstring 'Light colorscheme'
+map global user z ': colorscheme selenized-light<ret>' -docstring 'Light colorscheme'
+map global user x ': colorscheme selenized-dark<ret>' -docstring 'Dark colorscheme'
 map global normal '#' ': comment-line<ret>'
-
-# tmux splits
-# ───────────────
-define-command -docstring "split <filename>: open file in horizontal tmux split" \
-split -params 0.. -file-completion %{
-  tmux-terminal-vertical kak -c %val{session} %arg{@}
-}
-alias global sp split
-
-define-command -docstring "vsplit <filename>: open file in vertical tmux split" \
-vsplit -params 0.. -file-completion %{
-  tmux-terminal-horizontal kak -c %val{session} %arg{@}
-}
-alias global vs vsplit
-
-define-command -docstring "horizontally: run command in horizontal split" \
-horizontally -params 0.. -command-completion %{
-  tmux-terminal-vertical kak -c %val{session} -e "%arg{@}"
-}
-alias global horiz horizontally
-
-define-command -docstring "vertically: run command in vertical split" \
-vertically -params 0.. -command-completion %{
-  tmux-terminal-horizontal kak -c %val{session} -e "%arg{@}"
-}
-alias global vert vertically

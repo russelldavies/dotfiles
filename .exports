@@ -7,8 +7,6 @@ export CLICOLOR=1
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 
 # zsh history settings
-# Filename for history file
-export HISTFILE=$HOME/.zhistory
 # Allow 32³ entries
 export HISTSIZE=32768
 # Save history after logout
@@ -33,6 +31,6 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # Prevent zsh pure from doing automatic git pull
 export PURE_GIT_PULL=0
 
-export EDITOR=kak
+export EDITOR=hx
 
 export PSQLRC=~/.config/psql/psqlrc

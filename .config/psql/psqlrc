@@ -6,10 +6,11 @@
 \set ON_ERROR_STOP on
 \set ON_ERROR_ROLLBACK interactive
 \set VERBOSITY verbose
-\set HISTFILE ~/.local/share/psql/history- :DBNAME
+\set HISTFILE ~/.cache/psql/history- :DBNAME
+\set HISTSIZE 50000
 \set HISTCONTROL ignoredups
 \set COMP_KEYWORD_CASE lower
 SET timezone TO 'UTC';
-\setenv EDITOR 'kak'
+\setenv EDITOR 'hx'
 \timing on
 \unset QUIET
